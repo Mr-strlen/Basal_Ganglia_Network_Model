@@ -2,6 +2,7 @@
 2021年第十八届华为杯数学建模竞赛C题  
 至于得了什么奖，已经不重要了（主要是结果还没出来啊）  
 弄了四天，做了个粑粑，这里算是一个记录  
+就不放代码了，把一些做出的结果图片放上来  
 有关比赛期间的日常记录，哎，在这：https://www.zhihu.com/question/492261124/answer/2176448512  
 
 ## 整体分析
@@ -25,6 +26,42 @@
   - DBS刺激参数选择
 * 4-7篇文献主要是相关的毕业论文，也辅助构建了神经元的模型和超参数选择；在解答三四五问中，他们的实验结果为我们提供了参考意义
 
+## 过程中的一些思考
+1. 有关神经元模型构建时的参考链接
+	- HH模型 https://zhuanlan.zhihu.com/p/102770891
+	- 脉冲神经网络 神经元模型-HH模型（1） https://blog.csdn.net/qq_34970603/article/details/106356553
+	- SNN系列｜神经元模型篇(1) Hodgkin Huxley https://blog.csdn.net/ly18846826264/article/details/103230383
+	- Models of deep brain stimulation http://www.scholarpedia.org/article/Models_of_deep_brain_stimulation
+	- Basal ganglia http://www.scholarpedia.org/article/Basal_ganglia
+	- 簇发放brusting https://en.wikipedia.org/wiki/Bursting  
+		代码 https://github.com/zackmcnulty/NBIO_301-Project
+2. HH模型中，mhn参数初始化（时刻为0）从哪来  
+答：认为初始状态是一个平稳状态，平稳状态在时间为正无穷时取到（问题一参考链接1,2）
+3. 直流刺激评价结果  
+答：画三个图
+    - 单个神经元脉冲,"全或无" 大于某个阈值，出现周期响应
+    - 分段直流刺激
+    - 电流强度和频率的折线图
+4. 交流刺激评价  
+    - 符合直流，可以用来间隔调整
+    - 频率不能改变发放频率
+5. 簇发放模拟  
+加入钙离子通道
+6. 不同神经元的模型和超参数
+7. 网络连接设计（包括每个区域内神经元数量，外部连接，内部连接）
+### 问题二的解释思路
+1. 介绍回路
+2. 介绍网络结构
+3. HH方程+介绍突触方程（复杂方程简化）
+4. 介绍各种神经元
+5. 进行仿真（给出超参数：神经元方城里面的参数，突触参数）
+6. 时序图（统计每种神经元的放电频率mean±std）
+7. 进行生理学解释
+### 问题三的解释思路
+1. 去除SNc后的网络图
+2. 仿真时序图
+3. 定量分析：峰数（如何定义），平均间隔时间/方差，独立性or相关性检验
+4. 生理学解释
 
 ## 选题原因
 以下是我在赛题开题之后，看到题目的第一感受和思考，非常不专业且带有主观色彩，看个乐子。  
@@ -62,41 +99,3 @@ UWB无线定位问题，UWB在我实习的时候接触过
 - 第一问，建立线性规划模型给航班分配机组人员
 - 第二问，引进执勤概念，除了需要满足子问题1的所有目标外，还需满足如下目标
 - 第三问，编制排班计划，除了需要满足子问题1和2的所有目标外，还需满足如下目标
-
-## 过程中的一些思考
-参考链接
-- HH模型 https://zhuanlan.zhihu.com/p/102770891
-- 脉冲神经网络 神经元模型-HH模型（1） https://blog.csdn.net/qq_34970603/article/details/106356553
-- SNN系列｜神经元模型篇(1) Hodgkin Huxley https://blog.csdn.net/ly18846826264/article/details/103230383
-- Models of deep brain stimulation http://www.scholarpedia.org/article/Models_of_deep_brain_stimulation
-- Basal ganglia http://www.scholarpedia.org/article/Basal_ganglia
-- 簇发放brusting https://en.wikipedia.org/wiki/Bursting  
-	代码 https://github.com/zackmcnulty/NBIO_301-Project
-
-1. HH模型中，mhn参数初始化（时刻为0）从哪来  
-答：认为初始状态是一个平稳状态，平稳状态在时间为正无穷时取到（问题一参考链接1,2）
-2. 直流刺激评价结果  
-答：画三个图
-    - 单个神经元脉冲,"全或无" 大于某个阈值，出现周期响应
-    - 分段直流刺激
-    - 电流强度和频率的折线图
-3. 交流刺激评价  
-    - 符合直流，可以用来间隔调整
-    - 频率不能改变发放频率
-4. 簇发放模拟  
-加入钙离子通道
-5. 不同神经元的模型和超参数
-6. 网络连接设计
-### 问题二的解释思路
-1. 介绍回路
-2. 介绍网络结构
-3. HH方程+介绍突触方程（复杂方程简化）
-4. 介绍各种神经元
-5. 进行仿真（给出超参数：神经元方城里面的参数，突触参数）
-6. 时序图（统计每种神经元的放电频率mean±std）
-7. 进行生理学解释
-### 问题三的解释思路
-1. 去除SNc后的网络图
-2. 仿真时序图
-3. 定量分析：峰数（如何定义），平均间隔时间/方差，独立性or相关性检验
-4. 生理学解释
